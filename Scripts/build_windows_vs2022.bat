@@ -1,6 +1,5 @@
 @echo off
 
-set CURRENT_DIR=%cd%
 set SCRIPT_DIRECTORY=%~dp0
 cd "%SCRIPT_DIRECTORY%\.."
 
