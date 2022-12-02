@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "[Cloner] Start cloning"
-
 set -e -u -o pipefail
 
 realpath() {

@@ -40,6 +40,11 @@ OneShotSamplerAudioProcessorEditor::OneShotSamplerAudioProcessorEditor (OneShotS
     sliderStretcherPitch->setValue(1.0, juce::sendNotification);
     addAndMakeVisible(sliderStretcherPitch.get());
 
+    labelStretcherPitch = std::make_unique<juce::Label>();
+    labelStretcherPitch->setText("Stretcher Pitch", juce::dontSendNotification);
+    labelStretcherPitch->attachToComponent(sliderStretcherPitch.get(), false);
+    addAndMakeVisible(labelStretcherPitch.get());
+
     setSize(800, 600);
 
     startTimerHz(60);
@@ -61,7 +66,7 @@ void OneShotSamplerAudioProcessorEditor::resized()
     labelSignalBPM->setBoundsRelative(0.05, 0.05, 0.2, 0.2);
     sineWaveButton.setBoundsRelative(0.15, 0.2, 0.2, 0.2);
     sampleSelectButton.setBoundsRelative(0.4, 0.2, 0.2, 0.2);
-    sliderStretcherPitch->setBoundsRelative(0.6, 0.2, 0.2, 0.2);
+    sliderStretcherPitch->setBoundsRelative(0.75, 0.2, 0.2, 0.2);
     keyboardComponent.setBoundsRelative(0.0, 0.7, 1.0, 0.3);
 }
 

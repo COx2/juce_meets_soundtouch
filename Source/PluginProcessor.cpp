@@ -148,7 +148,10 @@ bool OneShotSamplerAudioProcessor::isBusesLayoutSupported(const BusesLayout& lay
 
 void OneShotSamplerAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
-    if (isSynthChanging) { return; }
+    if (isSynthChanging) 
+    {
+        return;
+    }
 
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels = getTotalNumInputChannels();
@@ -280,5 +283,9 @@ void OneShotSamplerAudioProcessor::loadSampleFile()
 
 void OneShotSamplerAudioProcessor::setStretcherPitch(double pitch)
 {
+    isSynthChanging = true;
+
     soundStretcher->setPitch(pitch);
+
+    isSynthChanging = false;
 }

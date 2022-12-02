@@ -40,6 +40,7 @@ private:
     juce::TextButton sampleSelectButton;
     std::unique_ptr<juce::Label> labelSignalBPM;
     std::unique_ptr<juce::Slider> sliderStretcherPitch;
+    std::unique_ptr<juce::Label> labelStretcherPitch;
     juce::MidiKeyboardComponent keyboardComponent;
 
     OneShotSamplerAudioProcessor& processor;
