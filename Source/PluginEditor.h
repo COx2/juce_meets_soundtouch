@@ -17,7 +17,6 @@
 class OneShotSamplerAudioProcessorEditor
     : public juce::AudioProcessorEditor
     , private juce::Button::Listener
-    , private juce::Timer
 {
 public:
     //==============================================================================
@@ -33,12 +32,8 @@ private:
     void buttonClicked(juce::Button* button) override;
 
     //==============================================================================
-    virtual void timerCallback() override;
-
-    //==============================================================================
     juce::TextButton sineWaveButton;
     juce::TextButton sampleSelectButton;
-    std::unique_ptr<juce::Label> labelSignalBPM;
     std::unique_ptr<juce::Slider> sliderStretcherPitch;
     std::unique_ptr<juce::Label> labelStretcherPitch;
     juce::MidiKeyboardComponent keyboardComponent;

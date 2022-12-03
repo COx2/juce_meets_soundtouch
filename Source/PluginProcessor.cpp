@@ -28,8 +28,6 @@ OneShotSamplerAudioProcessor::OneShotSamplerAudioProcessor()
     audioFormatManager = std::make_unique<juce::AudioFormatManager>();
     audioFormatManager->registerBasicFormats();
 
-    bpmDetector = std::make_unique<soundtouch::BPMDetect>(0, 48000);
-
     soundStretcher = std::make_unique<soundtouch::SoundTouch>();
     DBG(soundStretcher->getVersionString());
 }
@@ -108,8 +106,6 @@ void OneShotSamplerAudioProcessor::prepareToPlay(double sampleRate, int samplesP
     keyboardState.reset();
 
     auto num_channels = getMainBusNumOutputChannels();
-    bpmDetector = std::make_unique<soundtouch::BPMDetect>(1, sampleRate);
-
     soundStretcher->setChannels(num_channels);
     soundStretcher->setSampleRate((juce::uint32)sampleRate);
 }
@@ -163,9 +159,6 @@ void OneShotSamplerAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer
         buffer.clear(i, 0, buffer.getNumSamples());
 
     synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
-
-    bpmDetector->inputSamples(buffer.getReadPointer(1), buffer.getNumSamples());
-    outputSignalBPM = bpmDetector->getBpm();
 
     {
         std::vector<float> sending_samples;

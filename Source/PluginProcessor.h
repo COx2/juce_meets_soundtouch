@@ -62,7 +62,6 @@ public:
     void loadSampleFile();
 
     juce::MidiKeyboardState& getMidiKeyboardState() { return keyboardState; };
-    float getOutputSignalBPM() { return outputSignalBPM; }
 
     void setStretcherPitch(double pitch);
 
@@ -72,9 +71,6 @@ private:
     std::atomic<bool> isSynthChanging;
     std::unique_ptr<juce::FileChooser> fileChooser;
     std::unique_ptr<juce::AudioFormatManager> audioFormatManager;
-
-    std::unique_ptr<soundtouch::BPMDetect> bpmDetector;
-    float outputSignalBPM {0};
 
     std::unique_ptr<soundtouch::SoundTouch> soundStretcher;
 

@@ -19,9 +19,6 @@ OneShotSamplerAudioProcessorEditor::OneShotSamplerAudioProcessorEditor (OneShotS
 {
     addAndMakeVisible(keyboardComponent);
     
-    labelSignalBPM = std::make_unique<juce::Label>();
-    addAndMakeVisible(labelSignalBPM.get());
-
     sineWaveButton.setButtonText("Sine Wave");
     sineWaveButton.addListener(this);
     addAndMakeVisible(sineWaveButton);
@@ -46,13 +43,10 @@ OneShotSamplerAudioProcessorEditor::OneShotSamplerAudioProcessorEditor (OneShotS
     addAndMakeVisible(labelStretcherPitch.get());
 
     setSize(800, 600);
-
-    startTimerHz(60);
 }
 
 OneShotSamplerAudioProcessorEditor::~OneShotSamplerAudioProcessorEditor()
 {
-    stopTimer();
 }
 
 //==============================================================================
@@ -63,7 +57,6 @@ void OneShotSamplerAudioProcessorEditor::paint (juce::Graphics& g)
 
 void OneShotSamplerAudioProcessorEditor::resized()
 {
-    labelSignalBPM->setBoundsRelative(0.05, 0.05, 0.2, 0.2);
     sineWaveButton.setBoundsRelative(0.15, 0.2, 0.2, 0.2);
     sampleSelectButton.setBoundsRelative(0.4, 0.2, 0.2, 0.2);
     sliderStretcherPitch->setBoundsRelative(0.75, 0.2, 0.2, 0.2);
@@ -80,10 +73,4 @@ void OneShotSamplerAudioProcessorEditor::buttonClicked(juce::Button* button)
     {
         processor.loadSampleFile();
     }
-}
-
-void OneShotSamplerAudioProcessorEditor::timerCallback()
-{
-    const auto bpm = processor.getOutputSignalBPM();
-    labelSignalBPM->setText(juce::String("BPM: ") + juce::String(bpm, 2), juce::dontSendNotification);
 }
