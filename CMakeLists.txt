@@ -11,7 +11,7 @@ set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 # Adds all the module sources so they appear correctly in the IDE
 set_property(GLOBAL PROPERTY USE_FOLDERS YES)
-option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
+set(JUCE_ENABLE_MODULE_SOURCE_GROUPS ON)
 
 # Add JUCE Package
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/External/JUCE)
